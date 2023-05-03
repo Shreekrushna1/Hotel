@@ -12,19 +12,19 @@ function userLogin(event) {
     );
     if (loginUser) {
       if (loginUser.role === "User") {
-        userPanel();
         var uname = loginUser.username;
         var url = "user.html";
         url += "?userName=" + encodeURIComponent(uname);
-        window.location.href = url;
+        
         Swal.fire({
             icon: 'success',
             title: 'Successfull',
             text: 'User Log-In Success'
           }).then(() => {
-            window.location.href="user.html";
+            window.location.href = url;
           });
-        localStorage.setItem("Users", JSON.stringify(users));
+          loginUser.action = true;
+          localStorage.setItem("Users", JSON.stringify(users));
       } else {
         Swal.fire({
             icon: 'success',

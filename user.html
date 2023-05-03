@@ -25,14 +25,57 @@
     <header>
         <h2 class="logo">User Page</h2>
         <nav class="navigation">
+          <button
+          class="glow-on-hover" onclick="userHotelData()"
+        >
+          View Hotel
+        </button>
+          <button
+          class="glow-on-hover" onclick="viewUserOrder()"
+        >
+          View Order
+        </button>
             <button
-          class="glow-on-hover"
+          class="glow-on-hover" onclick="userLogOut()"
         >
           Log Out
         </button>
+            
         </nav>
       </header>
-    <h1>Welcome User</h1>
+        <div id="filterDiv" class="position-fixed mt-5">
+          <div class="mr-3">
+            <label for="filters" class="text-black">Sort By Amount</label>
+            <select name="filters" id="filters" class="form-select glow-on-hover d-flex" onclick="filter()" style="width: 150px;">
+            <option value="low" selected>Low To High</option>
+            <option value="high">High To Low</option>
+          </select>
+          </div>
+          <div class="mr-3">
+            <label for="filters" class="text-black">Sort By Hotel Name</label>
+            <select name="allHotelOption" id="allHotelOption" onclick="filter()" class="form-select glow-on-hover">
+              <option value="none" >Select Hotel</option>
+            </select>
+          </div>
+          <div class="mr-3">
+            <label for="filters" class="text-black">Sort By Food</label>
+            <select name="food" id="food" onclick="filter()" class="form-select glow-on-hover">
+              <option value="none">Select Food</option>
+            </select>
+          </div>
+      </div>
+      <div id="ordered-box">
+        <div id="order-box" class="row order-box text-white border-white text-center d-flex" style="width: auto;display: flex;flex-direction: row;">
+      </div>
+      </div>
+      <div id="user-order">
+        <div id="user-order-box" class="row text-white border-white text-center" style="width: auto;display: flex;flex-direction: row;">
+      </div>
+      </div>
+      
+      
+      
     <script src="index.js"></script>
+    <script src="user.js"></script>
 </body>
 </html>

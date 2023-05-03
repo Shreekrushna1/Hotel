@@ -4,7 +4,12 @@ h1{
     align-items: center;
     color: #fff;
 }
-
+.filters{
+    left: 0 !important;
+}
+body{
+    margin-top: 80px;
+}
 header {
     position: fixed;
     top: 0;
@@ -20,7 +25,7 @@ header {
 
 .logo {
     user-select: none;
-    color: #fff;
+    color: black;
     font-size: 2em;
 }
 
@@ -145,4 +150,11 @@ header {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
+}
+
+
+.filters{
+    display: flex;
+    justify-content: left !important;
+    align-items: start !important;
 }

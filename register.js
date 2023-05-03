@@ -7,6 +7,7 @@ var userRegister =  (event) => {
         lname:document.getElementById("lname").value,
         password:document.getElementById("password").value,
         role:document.getElementById("select").value,
+        action:false
     }
     validateData(userData);
 }
@@ -96,7 +97,12 @@ function successAlertUser(userData) {
         title: 'Successfull',
         text: 'User Registration Success'
       }).then(() => {
-        window.location.href="user.html";
+        var uname = userData.username;
+        console.log(uname);
+        var url = "user.html";
+        url += "?userName=" + encodeURIComponent(uname);
+        window.location.href=url;
+        userData.action = true;
         users.push(userData);
         localStorage.setItem("Users", JSON.stringify(users));
       });

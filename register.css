@@ -12,6 +12,9 @@ body{
     align-items: center;
     min-height: 100vh;
     background-color: #23242a;
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header {
@@ -29,7 +32,6 @@ header {
 
 .logo {
     user-select: none;
-    color: #fff;
     font-size: 2em;
 }
 

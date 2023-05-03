@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="admin.css">
 </head>
-<body onload="hotelTableData()">
+<body>
     <header>
         <h2 class="logo">Admin Page</h2>
         <nav class="navigation">
@@ -31,6 +31,16 @@
           data-bs-target="#exampleModal"
         >
           Create Hotel
+        </button>
+            <button
+          class="glow-on-hover" onclick="hotelTableData()"
+        >
+          View Hotels
+        </button>
+            <button
+          class="glow-on-hover" onclick="viewUsersOrder()"
+        >
+          View Orders
         </button>
             <button
           class="glow-on-hover" onclick="loginPageNavigate()"
@@ -46,16 +56,11 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog " >
+    <form action="#" id="form">
+      <div class="modal-dialog" >
         <div class="modal-content bg-black border-white text-white">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create Hotel</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
           <div class="modal-body mt-3">
             <label for="hotel-Name">Hotel Name</label>
@@ -66,65 +71,94 @@
               id="hotel-Name"
               name="hotel-Name"
             />
-            <div id="error-hotel-Name"></div>
-            Select Food Type
-            <select id="food-select" class="form-select" onchange="showMenu()">
-                <option value="none">Select</option>
-                <option value="punjabi">Punjabi</option>
-                <option value="chinese">Chinese</option>
-                <option value="south">South Indian</option>
-              </select>
-              
-              <div id="menu-punjabi" style="display:none;">
-                Select Punjabi Dish
-                <select class="form-select" id="punjabi-menu">
-                    <option value="none">Select Punjabi Dish</option>
-                    <option value="p-dish1">Punjabi Dish 1</option>
-                    <option value="p-dish2">Punjabi Dish 2</option>
-                    <option value="p-dish3">Punjabi Dish 3</option>
+            <div id="error">
+              <div id="error-hotel-Name"></div>
+            </div>
+            <div class="mt-2">
+
+              Select Food Type
+              <select id="food-select" class="form-select" onchange="showMenu()">
+                  <option value="none">Select</option>
+                  <option value="punjabi">Punjabi</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="south">South Indian</option>
                 </select>
+                <div id="error">
+                  <div id="error-food-select"></div>
+                </div>
+            </div>
+              <div class="mt-2">
+
+                <div id="menu-punjabi" style="display:none;">
+                  Select Punjabi Dish
+                  <select class="form-select" id="punjabi-menu">
+                      <option value="none">Select Punjabi Dish</option>
+                      <option value="Butter Chicken">Butter Chicken</option>
+                      <option value="Paratha">Paratha</option>
+                      <option value="Dal Makhani">Dal Makhani</option>
+                  </select>
+                  <div id="error">
+                    <div id="error-menu-punjabi"></div>
+                  </div>
+                </div>
               </div>
               
-              <div id="menu-chinese" style="display:none;">
-                Select Chinese Dish
-                <select class="form-select" id="chinese-menu">
-                    <option value="none">Select Chinese Dish</option>
-                    <option value="c-dish1">Chinese Dish 1</option>
-                    <option value="c-dish2">Chinese Dish 2</option>
-                    <option value="c-dish3">Chinese Dish 3</option>
-                </select>
+              <div class="mt-2">
+                <div id="menu-chinese" style="display:none;">
+                  Select Chinese Dish
+                  <select class="form-select" id="chinese-menu">
+                      <option value="none">Select Chinese Dish</option>
+                      <option value="Fried Rice">Fried Rice</option>
+                      <option value="Manchurian">Manchurian</option>
+                      <option value="Triple Rice">Triple Rice</option>
+                  </select>
+                  <div id="error">
+                    <div id="error-menu-chinese"></div>
+                  </div>
+                </div>
               </div>
-              <div id="menu-south" style="display:none;">
-                Select South Dish
-                <select class="form-select" id="south-menu">
-                    <option value="none">Select South Dish</option>
-                    <option value="s-dish1">South Dish 1</option>
-                    <option value="s-dish2">South Dish 2</option>
-                    <option value="s-dish">South Dish 3</option>
-                </select>
+
+              <div class="mt-2">
+                <div id="menu-south" style="display:none;">
+                  Select South Dish
+                  <select class="form-select" id="south-menu">
+                      <option value="none">Select South Dish</option>
+                      <option value="Dosas">Dosas</option>
+                      <option value="Idlis">Idlis</option>
+                      <option value="Vadas">Vadas</option>
+                  </select>
+                  <div id="error">
+                    <div id="error-menu-south"></div>
+                  </div>
+                </div>
               </div>
-              <div id="error-food-select"></div>
-              <label for="price">Price</label>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Price"
-              id="price"
-              name="price"
-            />
-            <div id="error-price" ></div>
+              <div class="mt-2">
+                <label for="price">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Price"
+                id="price"
+                name="price"
+                value="0"
+              />
+              <div id="error">
+                <div id="error-price" ></div>
+              </div>
+              </div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-danger"
               data-bs-dismiss="modal"
+              onclick="closeModal()"
             >
               Close
             </button>
             <button
               type="button"
               class="btn btn-success"
-              onclick="createHotel()"
+              onclick="createHotel(event)"
             >
               Save
             </button>
@@ -132,11 +166,21 @@
         </div>
       </div>
     </div>
+  </form>
     </div>
-
-        <div class="row order-box text-white border-white text-center" style="width: 700px;display: flex;flex-direction: row;">
-        </div>
+    <div id="filterDiv">
+      
+    <div id="order-box" class="row order-box text-white border-white text-center d-flex" style="width: auto;display: flex;flex-direction: row;">
+  </div>
+  </div>
+  <div>
+    <div id="user-order-box" class="row text-white border-white text-center" style="width: auto;display: flex;flex-direction: row;">
+  </div>
+  </div>
+    
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="index.js"></script>
     <script src="admin.js"></script>
+
 </body>
 </html>
